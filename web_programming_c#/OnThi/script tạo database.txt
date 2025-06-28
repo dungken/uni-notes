@@ -1,0 +1,217 @@
+-- Tạo cơ sở dữ liệu
+CREATE DATABASE QuanLyBanQuanAo;
+GO
+
+USE QuanLyBanQuanAo;
+GO
+
+-- Bảng Khachhang
+CREATE TABLE Khachhang (
+    KhachhangID INT PRIMARY KEY IDENTITY(1,1),
+    HoTen NVARCHAR(100) NOT NULL,
+    DiaChi NVARCHAR(255),
+    SoDienThoai NVARCHAR(20),
+    Email NVARCHAR(100),
+	TenDangNhap varchar(40),
+	MatKhau varchar(40),
+    NgayDangKy DATE NOT NULL
+);
+GO
+-- Bảng PhanLoaiSanPham
+CREATE TABLE PhanLoaiSanPham (
+    PhanLoaiSanPhamID INT PRIMARY KEY IDENTITY(1,1),
+    TenPhanLoai NVARCHAR(100) NOT NULL
+);
+GO
+
+-- Bảng Sanpham
+CREATE TABLE Sanpham (
+    SanphamID INT PRIMARY KEY IDENTITY(1,1),
+    TenSanpham NVARCHAR(100) NOT NULL,
+    MoTa NVARCHAR(255),
+    Gia DECIMAL(18, 2) NOT NULL,
+	TrangThai tinyint,
+	AnhDaiDien varchar(140),
+	NoiBat tinyint,
+    PhanLoaiSanPhamID INT,
+    CONSTRAINT FK_Sanpham_PhanLoaiSanPham FOREIGN KEY (PhanLoaiSanPhamID)
+        REFERENCES PhanLoaiSanPham(PhanLoaiSanPhamID)
+);
+GO
+
+
+
+-- Bảng MauSac
+CREATE TABLE MauSac (
+    MauSacID INT PRIMARY KEY IDENTITY(1,1),
+    TenMauSac NVARCHAR(50) NOT NULL
+);
+GO
+
+-- Bảng SanPhamTheoMauSac
+CREATE TABLE SanPhamTheoMauSac (
+    SanphamID INT,
+    MauSacID INT,
+    PRIMARY KEY (SanphamID, MauSacID),
+    CONSTRAINT FK_SanPhamTheoMauSac_Sanpham FOREIGN KEY (SanphamID)
+        REFERENCES Sanpham(SanphamID),
+    CONSTRAINT FK_SanPhamTheoMauSac_MauSac FOREIGN KEY (MauSacID)
+        REFERENCES MauSac(MauSacID)
+);
+GO
+
+-- Bảng DonHang
+CREATE TABLE DonHang (
+    DonHangID INT PRIMARY KEY IDENTITY(1,1),
+    KhachhangID INT,
+    NgayDatHang DATE NOT NULL,
+    TongTien DECIMAL(18, 2) NOT NULL,
+	PTThanhToan varchar(50),
+	TrangThai tinyint, 
+	GhiChu text,
+    CONSTRAINT FK_DonHang_Khachhang FOREIGN KEY (KhachhangID)
+        REFERENCES Khachhang(KhachhangID)
+);
+GO
+
+-- Bảng ChiTietDonHang
+CREATE TABLE ChiTietDonHang (
+    ChiTietDonHangID INT PRIMARY KEY IDENTITY(1,1),
+    DonHangID INT,
+    SanphamID INT,
+    SoLuong INT NOT NULL,
+    DonGia DECIMAL(18, 2) NOT NULL,
+    CONSTRAINT FK_ChiTietDonHang_DonHang FOREIGN KEY (DonHangID)
+        REFERENCES DonHang(DonHangID),
+    CONSTRAINT FK_ChiTietDonHang_Sanpham FOREIGN KEY (SanphamID)
+        REFERENCES Sanpham(SanphamID)
+);
+GO
+
+-- Bảng ChiTietSanPhamMua
+CREATE TABLE ChiTietSanPhamMua (
+    ChiTietSanPhamMuaID INT PRIMARY KEY IDENTITY(1,1),
+    ChiTietDonHangID INT,
+    MauSacID INT,
+    CONSTRAINT FK_ChiTietSanPhamMua_ChiTietDonHang FOREIGN KEY (ChiTietDonHangID)
+        REFERENCES ChiTietDonHang(ChiTietDonHangID),
+    CONSTRAINT FK_ChiTietSanPhamMua_MauSac FOREIGN KEY (MauSacID)
+        REFERENCES MauSac(MauSacID)
+);
+GO
+
+
+
+
+-- Insert data into PhanLoaiSanPham
+INSERT INTO PhanLoaiSanPham (TenPhanLoai)
+VALUES 
+    ('Shoes'),
+    ('Tshirts'),
+    ('Pants'),
+    ('Hoodie'),
+    ('Outer');
+GO
+INSERT INTO PhanLoaiSanPham (TenPhanLoai)
+VALUES 
+    ('Jackets'),
+    ('Accessories')
+ 
+GO
+
+
+
+select * from PhanLoaiSanPham
+-- Insert more data into Sanpham
+
+INSERT INTO Sanpham (TenSanpham, MoTa, Gia, TrangThai, AnhDaiDien, NoiBat, PhanLoaiSanPhamID)
+VALUES 
+    ('Orange White Nike', 'Best Shoe!', 55, 1, 'selling-products13.jpg', 0, 1),
+    ('Running Shoe', 'Giày màu xanh dương, chất liệu denim', 65, 1, 'selling-products14.jpg', 1, 1),
+    ('Nike Brand Shoe', 'Giày thể thao màu trắng của Nike', 65, 1, 'selling-products16.jpg', 0, 1),
+    ('Tennis Shoe', 'Giày thể thao màu trắng của Nike', 80, 1, 'selling-products15.jpg', 1, 1),
+    ('Silk White Shirt', 'Váy đầm màu đỏ, chất liệu lụa', 35, 1, 'selling-products3.jpg', 0, 2);
+GO
+INSERT INTO Sanpham (TenSanpham, MoTa, Gia, TrangThai, AnhDaiDien, NoiBat, PhanLoaiSanPhamID)
+VALUES 
+    ('White Half T-Shirt', 'Áo thun cổ tròn, chất liệu cotton, nhiều màu sắc', 30, 1, 'selling-products8.jpg', 1, 2),
+    ('Ghee Half T-Shirt', 'Chân váy midi màu đen, chất liệu vải mềm', 40, 1, 'selling-products5.jpg', 0, 2),
+    ('Long Sleeve T-Shirt', 'Găng tay ấm áp cho mùa đông', 40, 1, 'selling-products7.jpg', 0, 2),
+    ('Half Sleeve T-Shirt', 'Mũ lưỡi trai màu xanh, chất liệu vải dù', 40, 1, 'selling-products1.jpg', 1, 3),
+    ('Grunge Hoodie', 'Áo lông cao cấp, giữ ấm hiệu quả', 30, 1, 'selling-products4.jpg', 0, 3),
+   ('Long Sleeve T-Shirt', 'Găng tay ấm áp cho mùa đông', 40, 1, 'selling-products7.jpg', 0, 3),
+   ('Stylish Grey Pant', 'Găng tay ấm áp cho mùa đông', 40, 1, 'selling-products8.jpg', 0, 3),
+      ('White Hoodie', 'Găng tay ấm áp cho mùa đông', 40, 1, 'selling-products17.jpg', 0, 4),
+	   ('Navy Blue Hoodie', 'Găng tay ấm áp cho mùa đông', 45, 1, 'selling-products4.jpg', 0, 4),
+	     ('Dark Green Hoodie', 'Găng tay ấm áp cho mùa đông', 35, 1, 'selling-products18.jpg', 0, 4),
+		    ('Silk White Shirt', 'Găng tay ấm áp cho mùa đông', 35, 1, 'selling-products3.jpg', 0, 5),
+				    ('Grunge Hoodie', 'Găng tay ấm áp cho mùa đông', 30, 1, 'selling-products4.jpg', 0, 5),
+					 ('Grey Check Coat', 'Găng tay ấm áp cho mùa đông', 30, 1, 'selling-products6.jpg', 0, 5),
+					 	 ('Long Sleeve T-Shirt', 'Găng tay ấm áp cho mùa đông', 40, 1, 'selling-products7.jpg', 0, 5),
+						  ('Full Sleeve Jeans Jacket', 'Găng tay ấm áp cho mùa đông', 40, 1, 'selling-products5.jpg', 0, 6),
+						   ('Stylish Grey Coat', 'Găng tay ấm áp cho mùa đông', 35, 1, 'selling-products2.jpg', 0, 6),
+						     					 ('Grey Check Coat', 'Găng tay ấm áp cho mùa đông', 30, 1, 'selling-products6.jpg', 0, 6),
+				 ('Stylish Women Bag', 'Găng tay ấm áp cho mùa đông', 35, 1, 'selling-products9.jpg', 0, 7),
+				  ('Stylish Gadgets', 'Găng tay ấm áp cho mùa đông', 35, 1, 'selling-products20.jpg', 0, 7);
+
+
+GO
+-- Insert data into MauSac
+INSERT INTO MauSac (TenMauSac)
+VALUES 
+    ('Trắng'),
+    ('Xanh dương'),
+    ('Đen'),
+    ('Đỏ'),
+    ('Vàng');
+GO
+
+INSERT INTO MauSac (TenMauSac)
+VALUES 
+    ('Xám'),
+    ('Xanh lá cây'),
+    ('Hồng'),
+    ('Nâu'),
+    ('Tím'),
+    ('Be');
+GO
+
+select * from Sanpham 
+select * from MauSac
+
+
+-- Insert data into SanPhamTheoMauSac
+INSERT INTO SanPhamTheoMauSac (SanphamID, MauSacID)
+VALUES 
+    (1, 1),  -- Áo sơ mi trắng - Trắng
+    (2, 2),  -- Quần jeans xanh - Xanh dương
+    (3, 3),  -- Áo khoác bomber - Đen
+    (4, 4),  -- Giày thể thao Nike - Trắng
+    (5, 5);  -- Váy đầm đỏ - Đỏ
+GO
+
+-- Insert more data into SanPhamTheoMauSac
+INSERT INTO SanPhamTheoMauSac (SanphamID, MauSacID)
+VALUES 
+    (6, 6),  -- Áo thun cổ tròn - Xám
+    (7, 7),  -- Chân váy midi - Xanh lá cây
+    (8, 8),  -- Găng tay mùa đông - Xám
+    (9, 9),  -- Mũ lưỡi trai - Be
+    (10, 10), -- Áo lông cao cấp - Hồng
+    (11, 11), -- Quần short thể thao - Nâu
+
+	    (12, 1),  -- Áo thun cổ tròn - Xám
+    (13, 2),  -- Chân váy midi - Xanh lá cây
+    (14, 3),  -- Găng tay mùa đông - Xám
+    (15, 4),  -- Mũ lưỡi trai - Be
+    (16, 5), -- Áo lông cao cấp - Hồng
+    (17, 6), -- Quần short thể thao - Nâu
+	   (18, 7),  -- Áo thun cổ tròn - Xám
+    (19, 8),  -- Chân váy midi - Xanh lá cây
+    (20, 9),  -- Găng tay mùa đông - Xám
+    (21, 10),  -- Mũ lưỡi trai - Be
+    (22, 11), -- Áo lông cao cấp - Hồng
+    (23, 1), -- Quần short thể thao - Nâu
+	 (24, 2); -- Quần short thể thao - Nâu
+GO
+

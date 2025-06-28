@@ -1,0 +1,62 @@
+name: demo_app
+description: "Flutter authentication demo app with SQLite and SMTP email."
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.4.4 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # Core
+  cupertino_icons: ^1.0.8
+  
+  # Database
+  sqflite: ^2.3.0
+  sqflite_common_ffi: ^2.3.0+1
+  path: ^1.8.3
+  
+  # Email & Network
+  mailer: ^6.0.1
+  http: ^1.1.0
+  
+  # Validation
+  email_validator: ^2.1.17
+  
+  # State Management
+  flutter_bloc: ^8.1.3
+  bloc: ^8.1.2
+  provider: ^6.1.1
+  
+  # Storage (fallback for web)
+  shared_preferences: ^2.2.2
+  
+  # Utils
+  crypto: ^3.0.3
+  intl: ^0.19.0
+  equatable: ^2.0.5
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+
+flutter:
+  uses-material-design: true
+  
+  assets:
+    - assets/images/
+    - assets/icons/
+
+  # Using system fonts instead of custom fonts
+  # fonts:
+  #   - family: Roboto
+  #     fonts:
+  #       - asset: fonts/Roboto-Regular.ttf
+  #       - asset: fonts/Roboto-Medium.ttf
+  #         weight: 500
+  #       - asset: fonts/Roboto-Bold.ttf
+  #         weight: 700

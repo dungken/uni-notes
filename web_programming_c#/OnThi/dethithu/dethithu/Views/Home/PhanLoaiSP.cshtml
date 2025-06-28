@@ -1,0 +1,25 @@
+﻿@model IEnumerable<dethithu.Models.PhanLoaiSanPham>
+@{
+    ViewBag.Title = "PhanLoaiSP";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>PhanLoaiSP</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            
+            <th>Tên Sản Phẩm</th>
+            
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var sanPham in Model)
+        {
+            <tr>
+                <td>@sanPham.TenPhanLoai</td>
+            </tr>
+        }
+    </tbody>
+</table>

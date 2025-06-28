@@ -1,0 +1,49 @@
+﻿
+@model IEnumerable<dethithu.Models.PhanLoaiSanPham>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="text-end mb-3">
+    <a href="@Url.Action("Create", "Home")" class="btn btn-primary">
+         ADD NEW A PRODUCT
+    </a>
+</div>
+
+<ul class="tabs list-unstyled">
+    @foreach (var sanPham in Model)
+    {
+        <li class="tab" data-category-id="@sanPham.PhanLoaiSanPhamID">
+            @sanPham.TenPhanLoai
+        </li>
+    }
+</ul>
+<div id="product-container">
+    <!-- Ban đầu sẽ hiển thị toàn bộ sản phẩm -->
+    @Html.Partial("_ProductList", Model.SelectMany(m => m.Sanpham))
+</div>
+
+<script>
+    $(document).ready(function () {
+        // Bắt sự kiện click vào từng phân loại sản phẩm
+        $(".tabs li").click(function () {
+            var categoryId = $(this).data("category-id"); // Lấy ID phân loại từ data-category-id
+
+            // Gửi AJAX request
+            $.ajax({
+                url: '/Home/GetProductsByCategory', // Action xử lý lọc sản phẩm
+                type: 'GET',
+                data: { categoryId: categoryId }, // Gửi ID phân loại vào request
+                success: function (result) {
+                    // Cập nhật danh sách sản phẩm trong #product-container
+                    $("#product-container").html(result);
+                },
+                error: function () {
+                    alert("Đã xảy ra lỗi khi tải danh sách sản phẩm.");
+                }
+            });
+        });
+    });
+</script>
+

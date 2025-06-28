@@ -1,0 +1,164 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup />
+  <ItemGroup>
+    <Compile Update="MyCustomControl\RJButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="MyCustomControl\RJToggleButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="Views\2StepVerification.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Views\2StepVerificationForForgetPass.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Views\2StepVerifycationForLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Views\Admin\CategoriesAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Views\Admin\CategoriesEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Views\Admin\DiscountsAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Views\Admin\DiscountsEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Views\Admin\DiscountsList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Views\Admin\ImageDelete.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Views\Admin\OrdersEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Views\Admin\ProductAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Views\Admin\ProductEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Views\Admin\TextDashBoard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Views\Admin\VouchersAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Views\Admin\VouchersEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Views\Admin\VouchersList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Views\Admin\CustomersDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Views\Admin\CustomersList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Views\Admin\StockList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Views\Admin\OrderDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Views\Admin\OrdersList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Views\Admin\ProductList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Views\ChangePassword.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Views\ConfirmEmail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Views\Custommer\AboutUs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Views\Custommer\Cart.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Views\Custommer\DesignCustomer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Views\Custommer\HomeCustomer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Views\Custommer\MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Views\Custommer\OptionShippingMethod.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Views\Custommer\OptionVourcher.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Views\Custommer\OrderInvoices.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Views\Custommer\PaymentCustomer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Views\Custommer\PaymentMethod.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Views\Custommer\ProductDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Views\Custommer\ProductsCustomer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Views\Custommer\ProfilePage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Views\Custommer\Refund.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Views\Custommer\RequestProductsOfCustomer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Views\Custommer\ReviewProduct.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Views\Custommer\Setting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Views\Custommer\Support.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Views\Custommer\WatchReview.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Views\ForgetPassword.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Views\LoadingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Views\Login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Views\Admin\MainFormAdmin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Views\Resgister.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Views\Test1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\Resources.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+</Project>
